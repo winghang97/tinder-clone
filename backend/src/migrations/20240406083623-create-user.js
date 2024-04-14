@@ -11,9 +11,16 @@ module.exports = {
       },
       firstName: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       lastName: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
       },
       age: {
         type: Sequelize.NUMBER,
@@ -24,7 +31,16 @@ module.exports = {
       image: {
         type: Sequelize.STRING,
       },
-
+      university: {
+        type: Sequelize.STRING,
+      },
+      interests: {
+        type: Sequelize.STRING,
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

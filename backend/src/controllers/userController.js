@@ -10,7 +10,6 @@ self.getAll = async (req, res) => {
       whereClause.gender = gender;
     }
     const like = await Like.findAll({ attributes: ["userId"] });
-    console.log(like);
     const usersInLike = like.map((like) => like.userId);
 
     const users = await User.findAll({
@@ -27,6 +26,19 @@ self.getAll = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Fail to get users");
+  }
+};
+
+self.get = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.userId);
+    if (!user) {
+      return res.status(500).send("Fail to get user");
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Fail to get user");
   }
 };
 

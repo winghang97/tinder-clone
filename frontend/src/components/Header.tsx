@@ -16,6 +16,11 @@ const Header = ({ getGender, gender }: Props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
   return (
     <div className="d-flex align-items-center justify-content-between">
       <img className="tinder-logo me-auto" src={TinderLogo} />
@@ -28,7 +33,7 @@ const Header = ({ getGender, gender }: Props) => {
           <Offcanvas.Title>Discovery Settings</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Form.Group>
+          <Form.Group className="mb-3">
             <Form.Label>Show me</Form.Label>
             <Form.Select
               value={gender}
@@ -39,6 +44,11 @@ const Header = ({ getGender, gender }: Props) => {
               <option value="female">Women</option>
             </Form.Select>
           </Form.Group>
+          <div className="d-grid gap-2">
+            <button className="btn btn-primary" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
         </Offcanvas.Body>
       </Offcanvas>
     </div>

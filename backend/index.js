@@ -5,6 +5,7 @@ const cors = require("cors");
 const sequelize = require("./src/config/db");
 const userRoutes = require("./src/routes/userRoutes");
 const likeRoutes = require("./src/routes/likeRoutes");
+const authRoutes = require("./src/routes/authRoutes");
 
 const PORT = process.env.PORT || 3000;
 
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/likes", likeRoutes);
+app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running...");

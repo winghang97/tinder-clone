@@ -12,7 +12,7 @@ const Footer = () => {
           </a>
         </button>
         <button className="btn">
-          <a href="/message" className="text-secondary">
+          <a href="#" className="text-secondary">
             <FontAwesomeIcon icon={faComment} size="lg" />
           </a>
         </button>

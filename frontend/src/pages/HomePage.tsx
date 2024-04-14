@@ -3,23 +3,36 @@ import Card from "../components/Card";
 import { People } from "../types";
 import api from "../lib/api";
 import { Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   gender: string;
+  token: string;
 };
-const HomePage = ({ gender }: Props) => {
+const HomePage = ({ gender, token }: Props) => {
+  const nav = useNavigate();
+
   const [people, setPeople] = useState<People[]>();
-  console.log(gender);
 
   useEffect(() => {
+    if (!token) {
+      nav("/login");
+    }
+
     const getPeople = async () => {
-      const res = await api.get(`/users?gender=${gender}`);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const res = await api.get(`/users?gender=${gender}`, config);
       const data = res.data;
       setPeople(data);
     };
 
     getPeople();
-  }, [gender]);
+  }, [gender, token]);
 
   return (
     <div>
